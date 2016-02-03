@@ -1,0 +1,9 @@
+ros-indigo-soma-msgs (0.0.1-0trusty) trusty; urgency=high
+
+  * added message for ROIs
+  * initial commit
+  * Contributors: Lars Kunze
+
+ -- lars <lars@todo.todo>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
