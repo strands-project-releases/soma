@@ -1,0 +1,12 @@
+Source: ros-indigo-soma-utils
+Section: misc
+Priority: extra
+Maintainer: lars <lars@todo.todo>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-mongodb-store, ros-indigo-rospy, ros-indigo-soma-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma-utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-geometry-msgs, ros-indigo-mongodb-store, ros-indigo-rospy, ros-indigo-soma-msgs
+Description: The soma_utils package
