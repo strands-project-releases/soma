@@ -1,0 +1,34 @@
+ros-indigo-soma-objects (1.0.0-0trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * Latest soma2 is merged into soma fork named as soma
+  * Contributors: Nick Hawes, hkaraoguz
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma-objects (0.0.2-0trusty) trusty; urgency=high
+
+  * updated changelogs
+  * Contributors: Jenkins
+
+ -- lars <lars@todo.todo>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma-objects (0.0.1-0trusty) trusty; urgency=high
+
+  * added changelogs
+  * added g4s objects into soma_manager rviz list
+  * add g4s objects
+  * add docking station
+  * fixed bin box model
+  * fix monitor model
+  * object configuration
+  * add object meshes
+  * merged
+  * added possibility of modelling object in 3D
+  * read available object types from config file
+  * initial commit
+  * Contributors: Ferdian Jovan, Lars Kunze, Marc Hanheide, Paul Duckworth, STEM
+
+ -- lars <lars@todo.todo>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
