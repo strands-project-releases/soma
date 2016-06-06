@@ -2,11 +2,19 @@
 Changelog for package soma_geospatial_store
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.0 (2016-06-06)
+------------------
+* Updated package xml files.
+* Contributors: Nick Hawes
+
 0.0.2 (2016-06-06)
 ------------------
+* updated changelogs
+* Contributors: Jenkins
 
 0.0.1 (2016-02-03)
 ------------------
+* added changelogs
 * Added function to fetch rois for a given object.
 * removed call to geospatial store in novelty client.
 * Added Area of ROI helper function from msg store
@@ -22,4 +30,4 @@ Changelog for package soma_geospatial_store
 * convert xy-coords to longitude/latitude
 * use geopatial store for ROIs
 * geospatial store for semantic object maps
-* Contributors: Lars Kunze, Nick Hawes, Paul Duckworth
+* Contributors: Lars Kunze, Marc Hanheide, Nick Hawes, Paul Duckworth
