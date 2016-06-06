@@ -1,0 +1,34 @@
+ros-indigo-soma2-trajectory (1.0.0-0trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * Latest soma2 is merged into soma fork named as soma
+  * Contributors: Nick Hawes, hkaraoguz
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma2-trajectory (0.0.2-0trusty) trusty; urgency=high
+
+  * updated changelogs
+  * Contributors: Jenkins
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma2-trajectory (0.0.1-0trusty) trusty; urgency=high
+
+  * added changelogs
+  * replacing the collection name "people_trajectories" with "people_trajectory"
+  * make soma_trajectory.py able to listen online, delete the store data to people_trajectories
+  * delete swp file
+  * fixing the trajectory_importer.py
+  * add helper functions for soma OBJs and ROIs
+  * return first trajectory obj when found multiple (should not happen)
+  * add query examples
+  * add trajectory query service with visualization
+  * updated import
+  * convert xy-coords to longitude/latitude
+  * simple example how to import trajectories into the geospatial store
+  * Contributors: Ferdian Jovan, Lars Kunze, Marc Hanheide
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
