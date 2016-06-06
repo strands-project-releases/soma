@@ -12,14 +12,16 @@ import sys
 from threading import Timer
 
 from mongodb_store.message_store import MessageStoreProxy
-from soma_geospatial_store.geospatial_store import GeoSpatialStoreProxy
 from visualization_msgs.msg import Marker, InteractiveMarkerControl
 from interactive_markers.interactive_marker_server import *
 from interactive_markers.menu_handler import *
 from geometry_msgs.msg import Pose
 
-from soma_msgs.msg import SOMAObject
+from soma2_msgs.msg import SOMA2Object
+from soma_manager.srv import *
+from soma_map_manager.srv import *
 from bson.objectid import ObjectId
+from std_msgs.msg import String
 
 def trapezoidal_shaped_func(a, b, c, d, x):
     min_val = min(min((x - a)/(b - a), float(1.0)), (d - x)/(d - c))
@@ -33,7 +35,7 @@ def r_func(x):
     d =  0.625
 
     x = 1.0 - x
-  
+
     value = trapezoidal_shaped_func(a,b,c,d,x)
     return value
 
@@ -42,9 +44,9 @@ def g_func(x):
     b =  0.375
     c =  0.625
     d =  0.875
-    
+
     x = 1.0 - x
-    
+
     value = trapezoidal_shaped_func(a,b,c,d,x)
     return value
 
@@ -54,50 +56,85 @@ def b_func(x):
     b =  0.625
     c =  0.875
     d =  1.125
-  
+
     x = 1.0 - x
-  
+
     value = trapezoidal_shaped_func(a,b,c,d,x)
     return value
 
 
 class SOMAManager():
 
-    def __init__(self, soma_map, soma_conf, config_file=None):
+    def __init__(self, soma_conf, config_file=None):
 
-        self.soma_map = soma_map
+        #self.soma_map = soma_map
         self.soma_conf = soma_conf
         if config_file:
             self._config_file = config_file
         else:
             # default file
             rp = RosPack()
-            path = rp.get_path('soma_objects') + '/config/'
+            path = rp.get_path('soma2/soma_objects') + '/config/'
             filename = 'default.json'
             self._config_file=path+filename
         self._soma_obj_ids = dict()
         self._soma_obj_msg = dict()
-                
+
         self._interactive = True
 
-        self._msg_store=MessageStoreProxy(collection="soma")
+        self._msg_store=MessageStoreProxy(database="soma2data", collection="soma2")
 
-        self._gs_store=GeoSpatialStoreProxy(db="geospatial_store", collection="soma")
-        
-        self._server = InteractiveMarkerServer("soma")
+         # Get the SOMA2 map name and unique id
+        resp = self._init_map()
+        self.soma_map = resp.map_name
+        self.map_unique_id = resp.map_unique_id
+
+        print "Map name: ",self.soma_map," Unique ID: ",self.map_unique_id
+
+        if(self._check_soma2_insertservice() == False):
+            return None
+
+        self._server = InteractiveMarkerServer("soma2")
 
         self._init_types()
 
         self._init_menu()
-        
+
         self.load_objects()
 
         rospy.spin()
 
+    # Listens the map information from soma2 map_manager
+    def _init_map(self):
+        print "Waiting for the map info from soma_map_manager..."
+        try:
+            rospy.wait_for_service('soma2/map_info')
+            print "Map info received..."
+        except:
+            # print("No 'static_map' service")
+            return None
+        try:
+            map_info = rospy.ServiceProxy('soma2/map_info',MapInfo)
+            resp1 = map_info(0)
+            return resp1
+        except rospy.ServiceException, e:
+            print "Service call failed: %s"%e
+            return None
+
+    # Checks the soma2 inser service information from soma2 data_manager
+    def _check_soma2_insertservice(self):
+        print "Waiting for soma2 insert service..."
+        try:
+            rospy.wait_for_service('soma2/insert_objects')
+            print "soma2 insert service is active..."
+            return True
+        except:
+            print("No soma2 insert service! Quitting...")
+            return False
 
     def _init_types(self):
-        # read from config in soma_objects 
-        
+        # read from config in soma_objects
+
         with open(self._config_file) as config_file:
             config = json.load(config_file)
 
@@ -122,7 +159,7 @@ class SOMAManager():
         for k in sorted(self.mesh.keys()):
             entry =  self.menu_handler.insert(k, parent=add_entry, callback=self._add_cb)
             self.menu_item[entry] = k
-            
+
         del_entry =  self.menu_handler.insert( "Delete object", callback=self._del_cb)
 
         enable_entry = self.menu_handler.insert( "Movement control", callback=self._enable_cb )
@@ -135,18 +172,18 @@ class SOMAManager():
 
     def _del_cb(self, feedback):
         rospy.loginfo("Delete marker: %s", feedback.marker_name)
-        self.delete_object(feedback.marker_name)        
+        self.delete_object(feedback.marker_name)
 
     def _update_cb(self, feedback):
         p = feedback.pose.position
-        print "Marker " + feedback.marker_name + " position: " + str(round(p.x,2)) + ", " + str(round(p.y,2)) +  ", " + str(round(p.z,2))
-        
+        #print "Marker " + feedback.marker_name + " position: " + str(round(p.x,2)) + ", " + str(round(p.y,2)) +  ", " + str(round(p.z,2))
+
         if hasattr(self, "vp_timer_"+feedback.marker_name):
-            getattr(self, "vp_timer_"+feedback.marker_name).cancel()        
+            getattr(self, "vp_timer_"+feedback.marker_name).cancel()
         setattr(self, "vp_timer_"+feedback.marker_name,
                 Timer(3, self.update_object, [feedback]))
-        getattr(self, "vp_timer_"+feedback.marker_name).start()        
-        
+        getattr(self, "vp_timer_"+feedback.marker_name).start()
+
     def _enable_cb(self, feedback):
         handle = feedback.menu_entry_id
         state = self.menu_handler.getCheckState( handle )
@@ -161,26 +198,27 @@ class SOMAManager():
         self.menu_handler.reApply( self._server )
 
         self.load_objects()
-        
+
         self._server.applyChanges()
-        
+
     def _next_id(self):
         self._soma_id += 1
         return self._soma_id
 
     def _retrieve_objects(self):
 
-        objs = self._msg_store.query(SOMAObject._type, message_query={"map": self.soma_map,
-                                                                      "config": self.soma_conf})
-
+        objs = self._msg_store.query(SOMA2Object._type, message_query={"map_name":self.soma_map,"config":self.soma_conf})
+        #print objs
+        print self.soma_map
+        print self.soma_conf
         max_id = 0
         for o,om in objs:
             if int(o.id) > max_id:
                 max_id = int(o.id)
         self._soma_id = max_id
-        
+
         return objs
-    
+
     def load_objects(self):
 
         objs = self._retrieve_objects()
@@ -201,7 +239,7 @@ class SOMAManager():
     def load_object(self, soma_id, soma_type, pose):
 
         int_marker = self.create_object_marker(soma_id, soma_type, pose)
-        
+
         self._server.insert(int_marker, self._update_cb)
 
         self.menu_handler.apply( self._server, soma_id )
@@ -210,60 +248,71 @@ class SOMAManager():
 
     def add_object(self, soma_type, pose):
         # todo: add to mongodb
-        
+
         soma_id = self._next_id()
 
-        soma_obj = SOMAObject()
+        soma_obj = SOMA2Object()
         soma_obj.id = str(soma_id)
-        soma_obj.map = str(self.soma_map)
+        soma_obj.map_unique_id = str(self.map_unique_id)
+        soma_obj.map_name = str(self.soma_map)
         soma_obj.config = str(self.soma_conf)
         soma_obj.type = soma_type
         soma_obj.pose = pose
         soma_obj.pose.position.z = 0.0
-        soma_obj.frame = 'map'
-        soma_obj.mesh = self.mesh[soma_type]
 
-        _id = self._msg_store.insert(soma_obj)
-        self._soma_obj_ids[soma_obj.id] = _id
+        soma_obj.mesh = str(self.mesh[soma_type])
+        soma_obj.logtimestamp = rospy.Time.now().secs
+
+        insert_objects = rospy.ServiceProxy('soma2/insert_objects',SOMA2InsertObjs)
+        objects = list()
+        objects.append(soma_obj)
+
+        try:
+            resp = insert_objects(objects)
+            if(resp == True):
+                print "Object inserted successfully"
+            else:
+                print "Error inserting object!! Check DB..."
+        except:
+            print "Error inserting object!! soma2/insert_objects service call failed!"
+
+
+        #_id = self._msg_store.insert(soma_obj)
+        self._soma_obj_ids[soma_obj.id] = resp.db_ids[0].data
         self._soma_obj_msg[soma_obj.id] = soma_obj
 
         # add object to geospatial store
-        self._gs_store.insert(self.geo_json_from_soma_obj(soma_obj))
-        print "GS Store: added obj"
-        
+        #self._gs_store.insert(self.geo_json_from_soma_obj(soma_obj))
+        #print "GS Store: added obj"
+
         self.load_object(str(soma_id), soma_type, soma_obj.pose)
 
-    def geo_json_from_soma_obj(self, soma_obj):
-
-        geo_json = {}
-        geo_json['soma_id'] = soma_obj.id
-        geo_json['soma_map'] = soma_obj.map
-        geo_json['soma_config'] = soma_obj.config
-        geo_json['type'] = soma_obj.type
-        geo_json['loc'] = {'type': 'Point',
-                           'coordinates': self._gs_store.coords_to_lnglat(soma_obj.pose.position.x,
-                                                                          soma_obj.pose.position.y)}
-        return geo_json
 
     def delete_object(self, soma_id):
 
-        # geospatial store
-        res = self._gs_store.find_one({'soma_id': soma_id,
-                                       'soma_map': self.soma_map,
-                                       'soma_config': self.soma_conf})
-        if res:
-            _gs_id = res['_id']
-            self._gs_store.remove(_gs_id)
-            print "GS Store: deleted obj"
-                        
-
         # message store
         _id = self._soma_obj_ids[str(soma_id)]
-        self._msg_store.delete(str(_id))
-        
-        self._server.erase(soma_id)
-        self._server.applyChanges()
-        
+
+        ids = list()
+
+        delete_object = rospy.ServiceProxy('soma2/delete_objects',SOMA2DeleteObjs)
+
+        ids.append(soma_id)
+        try:
+            resp = delete_object(ids)
+            if(resp == True):
+                self._server.erase(soma_id)
+                self._server.applyChanges()
+                print "Object deleted successfully"
+            else:
+                print "Error deleting object!! Check DB..."
+        except:
+            print "Error deleting object!! soma2/delete_objects service call failed!"
+
+        #self._msg_store.delete(str(_id))
+
+
+
     def update_object(self, feedback):
         print "Updated marker " + feedback.marker_name
 
@@ -273,21 +322,20 @@ class SOMAManager():
         new_msg = copy.deepcopy(msg)
         new_msg.pose = feedback.pose
 
-        self._msg_store.update_id(_id, new_msg)
+        st = String()
+        st.data = '%s'%str(_id)
+        #st.data =  (str(_id)+ '.')[:-1]
 
-        # geospatial store
-        # delete old message
-        res = self._gs_store.find_one({'soma_id': new_msg.id,
-                                       'soma_map': self.soma_map,
-                                       'soma_config': self.soma_conf})
-        if res:
-            _gs_id = res['_id']
-            self._gs_store.remove(_gs_id)
-            print "GS Store: deleted obj"            
+    #    self._msg_store.update_id(_id, new_msg)
 
-        # add new object to geospatial store
-        self._gs_store.insert(self.geo_json_from_soma_obj(new_msg))
-        print "GS Store: added obj"
+        update_object = rospy.ServiceProxy('soma2/update_object',SOMA2UpdateObject)
+        try:
+            resp = update_object(str(_id),new_msg)
+            if(resp == True):
+                print "Object updated successfully"
+        except:
+            print "Error updating object!! soma2/update object service call failed!"
+        print resp
 
     def create_object_marker(self, soma_obj, soma_type, pose):
         # create an interactive marker for our server
@@ -296,8 +344,8 @@ class SOMAManager():
         int_marker.name = soma_obj
         int_marker.description = "id" + soma_obj
         int_marker.pose = pose
-        int_marker.pose.position.z = 0.01 
-        
+        int_marker.pose.position.z = 0.01
+
         mesh_marker = Marker()
         mesh_marker.type = Marker.MESH_RESOURCE
         mesh_marker.scale.x = 1
@@ -323,7 +371,7 @@ class SOMAManager():
         control.orientation.z = 0
         control.interaction_mode = InteractiveMarkerControl.MOVE_ROTATE
 
-        
+
         if self._interactive:
             int_marker.controls.append(copy.deepcopy(control))
             # add the control to the interactive marker
@@ -336,27 +384,24 @@ class SOMAManager():
 
         menu_control.interaction_mode = InteractiveMarkerControl.BUTTON
         menu_control.always_visible = True
-        
+
         menu_control.markers.append( mesh_marker) #makeBox(int_marker) )
         int_marker.controls.append(menu_control)
 
         return int_marker
-        
+
 
 if __name__=="__main__":
 
     # TODO: add list command
-    
+
     parser = argparse.ArgumentParser(prog='soma.py')
-    parser.add_argument("map", nargs=1, help='Name of the used 2D map')
+    #parser.add_argument("map", nargs=1, help='Name of the used 2D map')
     parser.add_argument("conf", nargs=1, help='Name of the object configuration')
     parser.add_argument('-t', metavar='config-file')
-                    
+
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
-    
+
     rospy.init_node("soma_obj")
-    rospy.loginfo("Running SOMA (map: %s, conf: %s, types: %s)", args.map[0], args.conf[0], args.t)
-    SOMAManager(args.map[0], args.conf[0],args.t)
-    
-
-
+    rospy.loginfo("Running SOMA ( conf: %s, types: %s)", args.conf[0], args.t)
+    SOMAManager(args.conf[0],args.t)
