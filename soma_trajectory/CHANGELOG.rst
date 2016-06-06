@@ -2,6 +2,9 @@
 Changelog for package soma_trajectory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.2 (2016-06-06)
+------------------
+
 0.0.1 (2016-02-03)
 ------------------
 * replacing the collection name "people_trajectories" with "people_trajectory"
