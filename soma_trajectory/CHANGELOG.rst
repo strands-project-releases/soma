@@ -1,12 +1,21 @@
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Changelog for package soma_trajectory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package soma2_trajectory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.0.0 (2016-06-06)
+------------------
+* Updated package xml files.
+* Latest soma2 is merged into soma fork named as soma
+* Contributors: Nick Hawes, hkaraoguz
 
 0.0.2 (2016-06-06)
 ------------------
+* updated changelogs
+* Contributors: Jenkins
 
 0.0.1 (2016-02-03)
 ------------------
+* added changelogs
 * replacing the collection name "people_trajectories" with "people_trajectory"
 * make soma_trajectory.py able to listen online, delete the store data to people_trajectories
 * delete swp file
@@ -18,4 +27,4 @@ Changelog for package soma_trajectory
 * updated import
 * convert xy-coords to longitude/latitude
 * simple example how to import trajectories into the geospatial store
-* Contributors: Ferdian Jovan, Lars Kunze
+* Contributors: Ferdian Jovan, Lars Kunze, Marc Hanheide

@@ -2,11 +2,28 @@
 Changelog for package soma_roi_manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.0 (2016-06-06)
+------------------
+* Updated package xml files.
+* Added missing import
+* Big restucture for release
+* Updated structure for release.
+* Fixed the hanging of query_manager during shutdown. Refined code for soma_roi
+* The corruption of regions after saving and loading has been fixed
+* Query results are returned as srv response. ROI drawing color has been set
+* SOMA2  to SOMA name changes
+* Updated documentation
+* Latest soma2 is merged into soma fork named as soma
+* Contributors: Nick Hawes, hkaraoguz
+
 0.0.2 (2016-06-06)
 ------------------
+* updated changelogs
+* Contributors: Jenkins
 
 0.0.1 (2016-02-03)
 ------------------
+* added changelogs
 * Fixed args so they work in a launch file.
 * fix frame problem
 * increase z offset for marker
@@ -23,4 +40,4 @@ Changelog for package soma_roi_manager
 * fixed problem with polygon
 * visualize roi using a line strip marker
 * added manager for ROIs
-* Contributors: Chris Burbridge, Ferdian Jovan, Lars Kunze, Nick Hawes
+* Contributors: Chris Burbridge, Ferdian Jovan, Lars Kunze, Marc Hanheide, Nick Hawes
