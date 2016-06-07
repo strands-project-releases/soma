@@ -1,0 +1,43 @@
+ros-indigo-soma-utils (1.0.0-1trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * make negative/no-allowed object default
+  * add about text
+  * change color
+  * code re-factoring for soma roi analyzer
+  * ignore persons
+  * remove jpg files
+  * generate blog entries (incl. images and contour for objects)
+  * add soma utils package incl a simple ROI analyzer
+  * Remove soma_utils directory
+  * Contributors: Lars Kunze, Nick Hawes, hkaraoguz
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma-utils (0.0.2-1trusty) trusty; urgency=high
+
+  * updated changelogs
+  * Contributors: Jenkins
+
+ -- lars <lars@todo.todo>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma-utils (0.0.1-1trusty) trusty; urgency=high
+
+  * added changelogs
+  * add type info for list option
+  * replaced ros_datacentre with mongodb_store
+  * calculate probabilities
+  * probability calculation
+  * added config for probs
+  * added area function
+  * class for calculating probalities
+  * added ray intersection method
+  * visualize all ROIs by default
+  * soma_utils/src/soma_utils/soma_utils.py
+  * added visualization for ROIs and objects
+  * added utils for calculating properties of ROIs
+  * Contributors: Lars Kunze, Marc Hanheide
+
+ -- lars <lars@todo.todo>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
