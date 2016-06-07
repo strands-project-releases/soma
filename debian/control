@@ -1,0 +1,12 @@
+Source: ros-indigo-soma-objects
+Section: misc
+Priority: extra
+Maintainer: Lars Kunze <L.Kunze@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma-objects
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: The soma_objects package
