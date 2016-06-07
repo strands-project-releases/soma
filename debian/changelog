@@ -1,0 +1,21 @@
+ros-indigo-soma2-msgs (1.0.0-1trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * Big restucture for release
+  * Contributors: Nick Hawes
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma2-msgs (0.0.2-1trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Sun, 05 Jun 2016 23:00:00 -0000
+
+ros-indigo-soma2-msgs (0.0.1-1trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
