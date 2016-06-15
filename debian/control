@@ -1,0 +1,12 @@
+Source: ros-indigo-soma-io
+Section: misc
+Priority: extra
+Maintainer: Lars Kunze <L.Kunze@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-octomap, ros-indigo-roscpp, ros-indigo-rospy
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma-io
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, ros-indigo-geometry-msgs, ros-indigo-octomap, ros-indigo-roscpp, ros-indigo-rospy
+Description: The soma_io package
