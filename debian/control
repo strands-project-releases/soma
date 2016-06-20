@@ -1,0 +1,12 @@
+Source: ros-indigo-soma-pcl-segmentation
+Section: misc
+Priority: extra
+Maintainer: Lars Kunze <L.Kunze@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), libpcl-1.7-all-dev, ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-octomap-msgs, ros-indigo-pcl-ros, ros-indigo-roscpp, ros-indigo-rospy, ros-indigo-semantic-map-publisher, ros-indigo-semantic-segmentation, ros-indigo-sensor-msgs, ros-indigo-std-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma-pcl-segmentation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpcl-1.7-all, ros-indigo-geometry-msgs, ros-indigo-octomap-msgs, ros-indigo-pcl-ros, ros-indigo-roscpp, ros-indigo-rospy, ros-indigo-semantic-map-publisher, ros-indigo-semantic-segmentation, ros-indigo-sensor-msgs, ros-indigo-std-msgs
+Description: The soma_pcl_segmentation package
