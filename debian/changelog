@@ -1,0 +1,56 @@
+ros-indigo-soma-io (1.0.4-0trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (1.0.3-0trusty) trusty; urgency=high
+
+  * Marc hanheide patch for release (#44 <https://github.com/strands-project/soma/issues/44>)
+    * updated changelogs
+    * 1.0.1
+    * updated changelogs
+    * 1.0.2
+    * added octomap_msgs dep
+    * added libqt5-core
+    * removed invalid install target
+    * added interactive_markers dep
+    * fix dev for QT5
+  * Contributors: Marc Hanheide
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (1.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Tue, 07 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (1.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (1.0.0-0trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * integrates latest world_state code
+  * integrates latest world_state code
+  * Contributors: Jay Young, Nick Hawes, ferdianjovan
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (0.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-io (0.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Lars Kunze <L.Kunze@cs.bham.ac.uk>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
