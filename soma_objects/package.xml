@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>soma_objects</name>
+  <version>1.0.3</version>
+  <description>The soma_objects package</description>
+
+  <maintainer email="L.Kunze@cs.bham.ac.uk">Lars Kunze</maintainer>
+  <maintainer email="n.a.hawes@cs.bham.ac.uk">Nick Hawes</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
