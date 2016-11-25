@@ -1,0 +1,12 @@
+Source: ros-indigo-soma2-msgs
+Section: misc
+Priority: extra
+Maintainer: Lars Kunze <L.Kunze@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-message-generation, ros-indigo-nav-msgs, ros-indigo-sensor-msgs, ros-indigo-std-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma2-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-geometry-msgs, ros-indigo-nav-msgs, ros-indigo-sensor-msgs, ros-indigo-std-msgs
+Description: The soma2_msgs package
