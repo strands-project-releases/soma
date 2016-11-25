@@ -1,0 +1,87 @@
+ros-indigo-soma-roi-manager (2.0.0-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Fri, 25 Nov 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (1.0.4-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (1.0.3-0trusty) trusty; urgency=high
+
+  * Marc hanheide patch for release (#44 <https://github.com/strands-project/soma/issues/44>)
+    * updated changelogs
+    * 1.0.1
+    * updated changelogs
+    * 1.0.2
+    * added octomap_msgs dep
+    * added libqt5-core
+    * removed invalid install target
+    * added interactive_markers dep
+    * fix dev for QT5
+  * Contributors: Marc Hanheide
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (1.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Tue, 07 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (1.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (1.0.0-0trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * Added missing import
+  * Big restucture for release
+  * Updated structure for release.
+  * Fixed the hanging of query_manager during shutdown. Refined code for soma_roi
+  * The corruption of regions after saving and loading has been fixed
+  * Query results are returned as srv response. ROI drawing color has been set
+  * SOMA2  to SOMA name changes
+  * Updated documentation
+  * Latest soma2 is merged into soma fork named as soma
+  * Contributors: Nick Hawes, hkaraoguz
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (0.0.2-0trusty) trusty; urgency=high
+
+  * updated changelogs
+  * Contributors: Jenkins
+
+ -- lars <lars@todo.todo>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-roi-manager (0.0.1-0trusty) trusty; urgency=high
+
+  * added changelogs
+  * Fixed args so they work in a launch file.
+  * fix frame problem
+  * increase z offset for marker
+  * Add get_rois function to query class.
+  * add cs_1 config file for soma_roi
+  * g4s demo
+  * fixing the trajectory_importer.py
+  * sort menu items
+  * convert xy-coords to longitude/latitude
+  * use geopatial store for ROIs
+  * replaced ros_datacentre with mongodb_store
+  * added labels for ROIs
+  * removed debug printout
+  * fixed problem with polygon
+  * visualize roi using a line strip marker
+  * added manager for ROIs
+  * Contributors: Chris Burbridge, Ferdian Jovan, Lars Kunze, Marc Hanheide, Nick Hawes
+
+ -- lars <lars@todo.todo>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
