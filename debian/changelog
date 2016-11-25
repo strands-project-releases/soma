@@ -1,0 +1,67 @@
+ros-indigo-soma-map-manager (2.0.0-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Fri, 25 Nov 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (1.0.4-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (1.0.3-0trusty) trusty; urgency=high
+
+  * Marc hanheide patch for release (#44 <https://github.com/strands-project/soma/issues/44>)
+    * updated changelogs
+    * 1.0.1
+    * updated changelogs
+    * 1.0.2
+    * added octomap_msgs dep
+    * added libqt5-core
+    * removed invalid install target
+    * added interactive_markers dep
+    * fix dev for QT5
+  * Contributors: Marc Hanheide
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 20 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (1.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Tue, 07 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (1.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (1.0.0-0trusty) trusty; urgency=high
+
+  * Updated package xml files.
+  * Big restucture for release
+  * Improving structure of soma_map_manager for release.
+  * Performance issue for  soma_map has been fixed
+  * Launch file has been updated for launching with mapname as an argument. soma_map has been updated to parse arguments correctly
+  * mapname argument has been added to soma_map.py for fast startup
+  * Updated documentation. Updated soma map
+  * Latest soma2 is merged into soma fork named as soma
+  * Contributors: Nick Hawes, hkaraoguz
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (0.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Mon, 06 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-map-manager (0.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Hakan Karaoguz <hkarao@kth.se>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
