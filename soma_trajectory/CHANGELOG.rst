@@ -1,12 +1,55 @@
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Changelog for package soma_trajectory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package soma2_trajectory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.1.0 (2016-12-20)
+------------------
+* Dependency fixes
+* Fixed merge conflicts
+* Modified package.xml files for 2.0.1 release
+* 2s are removed from soma_trajectory.
+* Contributors: Hakan, hkaraoguz
+
+2.0.0 (2016-11-25)
+------------------
+
+1.0.4 (2016-06-20)
+------------------
+
+1.0.3 (2016-06-20)
+------------------
+* Marc hanheide patch for release (`#44 <https://github.com/strands-project/soma/issues/44>`_)
+  * updated changelogs
+  * 1.0.1
+  * updated changelogs
+  * 1.0.2
+  * added octomap_msgs dep
+  * added libqt5-core
+  * removed invalid install target
+  * added interactive_markers dep
+  * fix dev for QT5
+* Contributors: Marc Hanheide
+
+1.0.2 (2016-06-07)
+------------------
+
+1.0.1 (2016-06-06)
+------------------
+
+1.0.0 (2016-06-06)
+------------------
+* Updated package xml files.
+* Latest soma2 is merged into soma fork named as soma
+* Contributors: Nick Hawes, hkaraoguz
 
 0.0.2 (2016-06-06)
 ------------------
+* updated changelogs
+* Contributors: Jenkins
 
 0.0.1 (2016-02-03)
 ------------------
+* added changelogs
 * replacing the collection name "people_trajectories" with "people_trajectory"
 * make soma_trajectory.py able to listen online, delete the store data to people_trajectories
 * delete swp file
@@ -18,4 +61,4 @@ Changelog for package soma_trajectory
 * updated import
 * convert xy-coords to longitude/latitude
 * simple example how to import trajectories into the geospatial store
-* Contributors: Ferdian Jovan, Lars Kunze
+* Contributors: Ferdian Jovan, Lars Kunze, Marc Hanheide

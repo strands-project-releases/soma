@@ -10,8 +10,13 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   soma_msgs
   visualization_msgs
+  message_generation
+  sensor_msgs
+  nav_msgs
+  std_msgs
+  soma_map_manager
 )
-
+find_package(Qt5Core)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -19,7 +24,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -46,18 +51,22 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
+ add_message_files(
+   FILES
+   SOMANewObjects.msg
 #   Message2.msg
-# )
+ )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+add_service_files(
+  FILES
+  SOMAInsertObjs.srv
+  SOMADeleteObjs.srv
+  SOMAUpdateObject.srv
+  SOMAQueryObjs.srv
+  SOMAQueryROIs.srv
 #   Service2.srv
-# )
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -67,10 +76,13 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   soma_msgs#   visualization_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+   soma_msgs
+   sensor_msgs
+   nav_msgs
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -82,9 +94,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+   INCLUDE_DIRS src/query_manager/
 #  LIBRARIES soma_manager
-#  CATKIN_DEPENDS interactive_markers mongodb_store rospy soma_msgs visualization_msgs
+  CATKIN_DEPENDS interactive_markers mongodb_store rospy roscpp soma_msgs visualization_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -97,7 +109,15 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  src/query_manager/
 )
+
+add_custom_target(SOURCES "src/query_manager/query_manager.cpp")
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# Add compiler flags for building executables (-fPIE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 ## Declare a cpp library
 # add_library(soma_manager
@@ -105,16 +125,18 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-# add_executable(soma_manager_node src/soma_manager_node.cpp)
+ add_executable(soma_query_manager_node  src/query_manager/query_manager.cpp   src/query_manager/querybuilder.h  src/query_manager/querybuilder.cpp)
+add_dependencies(soma_query_manager_node soma_msgs_generate_messages_cpp soma_manager_generate_messages_cpp)
+
+ qt5_use_modules(soma_query_manager_node Core)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(soma_manager_node soma_manager_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(soma_manager_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(soma_query_manager_node ${catkin_LIBRARIES} )
+add_dependencies(soma_query_manager_node soma_msgs_generate_messages_cpp)
 
 #############
 ## Install ##
@@ -123,19 +145,23 @@ include_directories(
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+install(DIRECTORY scripts/
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+        USE_SOURCE_PERMISSIONS)
 
-## Mark executables and/or libraries for installation
-# install(TARGETS soma_manager soma_manager_node
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+# Mark other files for installation (e.g. launch and bag files, etc.)
+install(
+  DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+
+# Mark executables and/or libraries for installation
+install(TARGETS soma_query_manager_node 
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark cpp header files for installation
 # install(DIRECTORY include/${PROJECT_NAME}/
