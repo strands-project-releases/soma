@@ -1,3 +1,36 @@
+## soma (indigo) - 2.1.0-0
+
+The packages in the `soma` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --non-interactive -t indigo -r indigo soma` on `Tue, 20 Dec 2016 14:14:10 -0000`
+
+These packages were released:
+- `soma`
+- `soma_llsd`
+- `soma_llsd_msgs`
+- `soma_manager`
+- `soma_map_manager`
+- `soma_msgs`
+- `soma_objects`
+- `soma_pcl_segmentation`
+- `soma_roi_manager`
+- `soma_trajectory`
+- `soma_utils`
+- `soma_visualizer`
+
+Version of package(s) in repository `soma`:
+- upstream repository: https://github.com/strands-project/soma.git
+- release repository: https://github.com/strands-project-releases/soma.git
+- rosdistro version: `2.0.0-0`
+- old version: `2.0.0-0`
+- new version: `2.1.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.2`
+- vcstools version: `0.1.37`
+
+
 ## soma (indigo) - 2.0.0-0
 
 The packages in the `soma` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --non-interactive -t indigo -r indigo soma` on `Fri, 25 Nov 2016 16:23:42 -0000`
