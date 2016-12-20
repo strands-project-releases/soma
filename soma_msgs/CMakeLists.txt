@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   message_generation
   std_msgs
+  sensor_msgs
+  nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,6 +50,7 @@ add_message_files(
    FILES
    SOMAObject.msg
    SOMAROIObject.msg
+   SOMAOccupancyMap.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -67,7 +70,7 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
    DEPENDENCIES
-  geometry_msgs std_msgs
+  geometry_msgs std_msgs sensor_msgs nav_msgs
 )
 
 ###################################
@@ -98,19 +101,19 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(soma_msgs
-#   src/${PROJECT_NAME}/soma_msgs.cpp
+# add_library(soma2_msgs
+#   src/${PROJECT_NAME}/soma2_msgs.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(soma_msgs_node src/soma_msgs_node.cpp)
+# add_executable(soma2_msgs_node src/soma2_msgs_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(soma_msgs_node soma_msgs_generate_messages_cpp)
+# add_dependencies(soma2_msgs_node soma2_msgs_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(soma_msgs_node
+# target_link_libraries(soma2_msgs_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -129,7 +132,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS soma_msgs soma_msgs_node
+# install(TARGETS soma2_msgs soma2_msgs_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -154,7 +157,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_soma_msgs.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_soma2_msgs.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
