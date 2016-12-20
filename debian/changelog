@@ -1,0 +1,60 @@
+ros-indigo-soma-llsd-msgs (2.1.0-0trusty) trusty; urgency=high
+
+  * Modified package.xml files for 2.0.1 release
+  * integrates soma_llsd into soma data manager
+  * Contributors: Hakan, STRANDS
+  * Modified package.xml files for 2.0.1 release
+  * integrates soma_llsd into soma data manager
+  * Contributors: Hakan, STRANDS
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Tue, 20 Dec 2016 00:00:00 -0000
+
+ros-indigo-soma-llsd-msgs (2.0.0-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Fri, 25 Nov 2016 00:00:00 -0000
+
+ros-indigo-soma-llsd-msgs (1.0.4-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Mon, 20 Jun 2016 10:17:00 -0000
+
+ros-indigo-soma-llsd-msgs (1.0.3-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Mon, 20 Jun 2016 08:36:00 -0000
+
+ros-indigo-soma-llsd-msgs (1.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Tue, 07 Jun 2016 00:00:00 -0000
+
+ros-indigo-soma-llsd-msgs (1.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Mon, 06 Jun 2016 22:45:00 -0000
+
+ros-indigo-soma-llsd-msgs (1.0.0-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Mon, 06 Jun 2016 14:44:00 -0000
+
+ros-indigo-soma-llsd-msgs (0.0.2-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Mon, 06 Jun 2016 12:04:00 -0000
+
+ros-indigo-soma-llsd-msgs (0.0.1-0trusty) trusty; urgency=high
+
+
+
+ -- Jay Young <j.young@cs.bham.ac.uk>  Wed, 03 Feb 2016 00:00:00 -0000
+
+
