@@ -1,0 +1,12 @@
+Source: ros-indigo-soma-llsd
+Section: misc
+Priority: extra
+Maintainer: Jay Young <j.young@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-message-generation, ros-indigo-message-runtime, ros-indigo-nav-msgs, ros-indigo-rospy, ros-indigo-sensor-msgs, ros-indigo-soma-llsd-msgs, ros-indigo-std-msgs, ros-indigo-tf
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma-llsd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-geometry-msgs, ros-indigo-message-generation, ros-indigo-message-runtime, ros-indigo-nav-msgs, ros-indigo-rospy, ros-indigo-sensor-msgs, ros-indigo-soma-llsd-msgs, ros-indigo-std-msgs, ros-indigo-tf
+Description: The soma_llsd package
