@@ -1,0 +1,12 @@
+Source: ros-indigo-soma
+Section: misc
+Priority: extra
+Maintainer: Lars Kunze <l.kunze@cs.bham.ac.uk>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-soma
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-soma-geospatial-store, ros-indigo-soma-llsd, ros-indigo-soma-llsd-msgs, ros-indigo-soma-manager, ros-indigo-soma-map-manager, ros-indigo-soma-msgs, ros-indigo-soma-objects, ros-indigo-soma-pcl-segmentation, ros-indigo-soma-roi-manager, ros-indigo-soma-trajectory, ros-indigo-soma-utils, ros-indigo-soma-visualizer
+Description: The soma package
